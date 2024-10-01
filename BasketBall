@@ -1,0 +1,75 @@
+package GracezuGame;
+
+import java.util.Objects;
+public class BasketBall extends Game implements iGame{
+    //  1.	Principal Refereeâ€™s name
+    private String referee;
+    //- Provide a default constructor that sets team names and refereeâ€™s name to â€œunknownâ€, number of payers to 11, number of maximum substitutions to 5 and the score of each team as well as number of players substituted to 0.
+    public BasketBall(){
+        super();
+        try {
+            this.setMaxPlayers(5);
+        }catch(Exception e){
+
+        }
+        referee = "unknown";
+    }
+    public BasketBall(String t1, String t2, String ref){
+        super(t1, t2, 11, 5, 0, 0, 0, 0);
+        referee = ref;
+    }
+    // - Provide a constructor that accepts the names of the teams and the refereeâ€™s name.
+    public BasketBall(String t1, String t2, int subA, int subB, int scoreA, int scoreB, String ref){
+        super(t1, t2, 11, 0, subA, subB, scoreA, scoreB);
+        referee = ref;
+    }
+
+    public String getReferee() {
+        return referee;
+    }
+
+    public void setReferee(String referee) {
+        this.referee = referee;
+    }
+
+    //- Override the method toString()
+
+    @Override
+    public String toString() {
+        return "BasketBall{" + super.toString() +
+                "referee='" + referee + '\'' +
+                '}';
+    }
+
+
+//- Override the method equals to compare two SoccerGames
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof BasketBall)) return false;
+        if (!super.equals(o)) return false;
+        BasketBall that = (BasketBall) o;
+        return Objects.equals(referee, that.referee);
+    }
+
+    //- Implement  TeamAScored and TeamBScored that accepts an integer to increase the score of the appropriate team by 1 even if the number specified is larger than 1.
+    public void teamAScored(int a) throws Exception{
+        if(a <1 || a>3)
+            throw new Exception("Cannot score other than 1, 2 or 3 points");
+        this.setScoreTeamA(this.getScoreTeamA() + a);
+    }
+    public void teamBScored(int a) throws Exception{
+        if(a <1 || a>3)
+            throw new Exception("Cannot score other than 1, 2 or 3 points");
+        this.setScoreTeamB(this.getScoreTeamB() + a);
+    }
+
+    //          - Implement the method SubstitutionA, SubstitutionB that increases the number of players substituted for the appropriate team by 1 if it is less than 5, otherwise it displays â€œNo more substitutions allowedâ€.
+    public void substitutionA(int a) throws Exception{
+        this.setSubstitutedA(this.getSubstitutedA() + 1);
+    }
+    public void substitutionB(int a) throws Exception{
+        this.setSubstitutedB(this.getSubstitutedB() + 1);
+    }
+}
