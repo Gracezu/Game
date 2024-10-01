@@ -1,0 +1,44 @@
+ package GracezuGame;
+
+import java.util.Objects;
+
+public interface iGame {
+    public String getTeamA() ;
+    public void setTeamA(String teamA) ;
+    public String getTeamB() ;
+    public void setTeamB(String teamB) ;
+    public int getMaxPlayers();
+    void setReferee(String ref);
+    public void setMaxPlayers(int maxPlayers) throws Exception;
+
+    public int getMaxSubs();
+
+    public void setMaxSubs(int maxSubs) throws Exception;
+
+    public int getScoreTeamA() ;
+
+    public void setScoreTeamA(int scoreTeamA) throws Exception;
+
+    public int getScoreTeamB();
+    public void setScoreTeamB(int scoreTeamB) throws Exception ;
+
+    public int getSubstitutedA();
+
+    public void setSubstitutedA(int substitutedA) throws Exception;
+    public void setSubstitutedB(int substitutedA) throws Exception ;
+
+    public int getSubstitutedB() ;
+    void teamAScored(int a) throws Exception;
+    void teamBScored(int a) throws Exception;
+    String toString() ;
+    //- Provide a method equals that accepts an object Game and returns true if the object is equal to current object and false otherwise.
+
+    @Override
+    boolean equals(Object o) ;
+
+    //-Provide abstract methods substitutionA(int) and substitutionB(int) to substitute a certain number of players
+    void substitutionA(int a) throws Exception;
+    void substitutionB(int a) throws Exception;
+    //- Provide a method WhoIsWinning that returns the name of the winning team or â€œDrawâ€ if both have same score.
+    public String whoIsWinning();
+}
