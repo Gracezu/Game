@@ -1,0 +1,28 @@
+package GracezuGame;
+
+public class GameTester {
+    public static void main(String[] args) {
+        try {
+            SoccerGame soccer = new SoccerGame("First team",
+                    "Second team", "John");
+            System.out.println(soccer);
+            soccer.teamAScored(1);
+            soccer.teamBScored(1);
+            soccer.teamAScored(1);
+            soccer.teamBScored(1);
+            soccer.teamAScored(1);
+            System.out.println("Game: " + soccer);
+            System.out.println("The winner is " + soccer.whoIsWinning());
+
+            iGame football = new BasketBall();
+            football.setReferee("Bob");
+            football.setTeamA("Red team");
+            football.setTeamB("Blue team");
+            football.teamAScored(2);
+            football.teamBScored(2);
+            System.out.println("Basket game: " + football);
+            System.out.println("The winner is " + football.whoIsWinning());
+        } catch(Exception e) {}
+    }
+
+}
