@@ -1,0 +1,144 @@
+package GracezuGame;
+
+import java.util.Objects;
+
+abstract class Game {
+    //A.	Design a class Game that has the following instance variables and properties:
+    //1.	Name of first team and name of second team
+    private String TeamA, TeamB;
+    //2.	Number of players in each team (one single variable)
+    private int maxPlayers, maxSubs;
+    //3.	Score of first and second team
+    private int scoreTeamA, scoreTeamB;
+    //4.	Number players substituted for teamA and teamB.
+    private int substitutedA, substitutedB;
+    //- Provide a default constructor that sets names of teams to â€œUnknownâ€, number of players, substitutes and scores to 0.
+    public Game() {
+        TeamA = TeamB = "Unknown";
+        maxSubs = maxPlayers = substitutedA = substitutedB = scoreTeamB = scoreTeamA = 0;
+    }
+     //  - Provide a constructor that accepts specific values for each of the private members. Throw an exception (of your design) if the numbers are negative.
+     public Game(String t1, String t2, int mp, int ms, int subA, int subB, int sA, int sB) {
+         TeamA = t1;
+         TeamB = t2;
+         maxPlayers = mp;
+         maxSubs = ms;
+         substitutedA = subA;
+         substitutedB = subB;
+         scoreTeamB = sB;
+         scoreTeamA = sA;
+     }
+    //        - Provide getters for each of the members
+    public String getTeamA() {
+        return TeamA;
+    }
+    public void setTeamA(String teamA) {
+        TeamA = teamA;
+    }
+    public String getTeamB() {
+        return TeamB;
+    }
+    public void setTeamB(String teamB) {
+        TeamB = teamB;
+    }
+    public int getMaxPlayers() {
+        return maxPlayers;
+    }
+
+    public void setMaxPlayers(int maxPlayers) throws Exception{
+        if(maxPlayers <= 0) {
+            throw new Exception("maxPlayers annot be negative or 0");
+        }
+        this.maxPlayers = maxPlayers;
+    }
+
+    public int getMaxSubs() {
+        return maxSubs;
+    }
+
+    public void setMaxSubs(int maxSubs) throws Exception{
+        if(maxSubs <= 0) {
+            throw new Exception("maxPlayers annot be negative or 0");
+        }
+        this.maxSubs = maxSubs;
+    }
+
+    public int getScoreTeamA() {
+        return scoreTeamA;
+    }
+
+    public void setScoreTeamA(int scoreTeamA) throws Exception{
+        if(scoreTeamA < 0)
+            throw new Exception("Score cannot be negatove");
+        this.scoreTeamA = scoreTeamA;
+    }
+
+    public int getScoreTeamB() {
+        return scoreTeamB;
+    }
+
+    public void setScoreTeamB(int scoreTeamB) throws Exception {
+        if(scoreTeamB < 0)
+            throw new Exception("Score cannot be negatove");
+        this.scoreTeamB = scoreTeamB;
+    }
+
+    public int getSubstitutedA() {
+        return substitutedA;
+    }
+
+    public void setSubstitutedA(int substitutedA) throws Exception {
+        if(substitutedA < 0)
+            throw new Exception("Substituted cannot be 0");
+        this.substitutedA = substitutedA;
+    }
+
+    public void setSubstitutedB(int substitutedA) throws Exception {
+        if(substitutedB < 0)
+            throw new Exception("Substituted cannot be 0");
+        this.substitutedB = substitutedB;
+    }
+
+    public int getSubstitutedB() {
+        return this.substitutedB;
+    }
+    //- Provide abstract methods TeamAScored(int) and TeamBScored(int) that increases the score of the appropriate team by a specified value.
+    abstract void teamAScored(int a) throws Exception;
+    abstract void teamBScored(int a) throws Exception;
+    //- Provide a method toString that returns all attributes of an object as a string
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "TeamA='" + TeamA + '\'' +
+                ", TeamB='" + TeamB + '\'' +
+                ", maxPlayers=" + maxPlayers +
+                ", maxSubs=" + maxSubs +
+                ", scoreTeamA=" + scoreTeamA +
+                ", scoreTeamB=" + scoreTeamB +
+                ", substitutedA=" + substitutedA +
+                ", substitutedB=" + substitutedB +
+                '}';
+    }
+    //- Provide a method equals that accepts an object Game and returns true if the object is equal to current object and false otherwise.
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Game)) return false;
+        Game game = (Game) o;
+        return maxPlayers == game.maxPlayers && scoreTeamA == game.scoreTeamA && scoreTeamB == game.scoreTeamB && substitutedA == game.substitutedA && substitutedB == game.substitutedB && Objects.equals(TeamA, game.TeamA) && Objects.equals(TeamB, game.TeamB);
+    }
+
+   //-Provide abstract methods substitutionA(int) and substitutionB(int) to substitute a certain number of players
+    abstract void substitutionA(int a) throws Exception;
+    abstract void substitutionB(int a) throws Exception;
+   //- Provide a method WhoIsWinning that returns the name of the winning team or â€œDrawâ€ if both have same score.
+    public String whoIsWinning(){
+        if(scoreTeamA > scoreTeamB)
+            return getTeamA();
+        if(scoreTeamB == scoreTeamA)
+            return "draw";
+        return getTeamB();
+    }
+}
